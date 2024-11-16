@@ -87,9 +87,9 @@ class DoctorForm(ModelForm):
                 'placeholder': 'Ingrese un número de cedula', 
                 'class': 'form-control'
             }),
-            'especialidad': forms.TextInput(attrs={
-                'placeholder': 'Ingrese una especialidad', 
-                'class': 'form-control'
+            'especialidad': forms.Select(attrs={
+                'class': 'select2 form-control',
+                'style': 'width: 100%'
             }),
             'tipo_cedula': forms.Select(attrs={
                 'class': 'form-control',

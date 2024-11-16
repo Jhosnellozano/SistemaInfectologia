@@ -15,6 +15,18 @@ TIPO_CEDULA_CHOICES = [
     ("E", 'Extranjero'),
 ]
 
+ESPECIALIDAD_CHOICES = [
+    ("Medicina General", "Medicina General"),
+    ("Pediatría", "Pediatría"),
+    ("Ginecología", "Ginecología"),
+    ("Traumatología", "Traumatología"),
+    ("Dermatología", "Dermatología"),
+    ("Oftalmología", "Oftalmología"),
+    ("Odontología", "Odontología"),
+    ("Psiquiatría", "Psiquiatría"),
+    ("Cardiología", "Cardiología"),
+]
+
 class Paciente(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
@@ -50,8 +62,8 @@ class Doctor(models.Model):
     apellido = models.CharField(max_length=50)
     tipo_cedula = models.CharField(max_length=1, choices=TIPO_CEDULA_CHOICES, default=TIPO_CEDULA_CHOICES[0][0])
     cedula = models.PositiveIntegerField(unique=True)
-    especialidad = models.CharField(max_length=100)
-    fecha_creacion = models.DateTimeField(auto_now_add=True, null=True)  # Nuevo campo para almacenar la fecha de creación
+    especialidad = models.CharField(max_length=20, choices=ESPECIALIDAD_CHOICES)
+    fecha_creacion = models.DateTimeField(auto_now_add=True, null=True)
     fecha_modificacion = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
