@@ -1,0 +1,23 @@
+{% extends 'body.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock head %}
+
+{% block title %}
+<div class="col-sm-6 mb-1">
+  <h4 class="text-dark title-form">
+    <span class="badge badge-rounded main_theme"><i class="fas fa-hospital-alt text-primary"></i></span>
+      <span style="vertical-align: middle;">{{ title }}</span>
+  </h4>
+</div>
+{% endblock title %}
+
+{% block content %}
+{% endblock content %}
+
+{% block javascript %}
+
+{% endblock javascript %}

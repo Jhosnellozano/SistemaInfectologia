@@ -1,0 +1,41 @@
+{% load static %}
+<div id="button-show">
+  <button type="button" class="chatbot-toggler">
+    <span class="fas fa-comment-alt"></span>
+    <span class="fas fa-times"></span>
+  </button>
+</div>
+<div class="chatbot">
+  <header>
+    <h6
+      id="full_name"
+      class="d-inline-block text-truncate"
+      style="max-width: 170px"
+    >
+      Chat de mensajería
+
+    </h6>
+    <button type="button" class="btn_header users_list d-none">
+      <i class="fas fa-long-arrow-alt-left"></i>
+    </button>
+    <button type="button" class="btn_header close-btn">
+      <i class="fas fa-times"></i>
+    </button>
+  </header>
+  <div class="home" id="home">
+    <ul class="users_container"></ul>
+  </div>
+  <div id="message" class="content_message" style="display: none">
+    <ul class="chatbox" id="message_list"></ul>
+    <div class="chat-input">
+      <textarea
+        placeholder="Escribe un mensaje..."
+        spellcheck="false"
+      ></textarea>
+      <span class="send_btn"><i class="fas fa-paper-plane"></i></span>
+      <span class="cancel_update d-none"
+        ><i class="fas fa-times f-13"></i
+      ></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+{% extends 'form.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<!-- Basic Layout -->
+<form method="post" action=".">  
+    <div class="row">
+		<div class="col-md-12">
+			<div class="card card-primary">
+                <div class="card-header ">
+                    <h3 class="card-title">
+                        {% if action == 'add' %}
+                            <i class="fas fa-plus"></i> <b class="ml-2">Nuevo</b>
+                        {% else %}
+                            <i class="fas fa-edit"></i> <b class="ml-2">Edición</b>
+                        {% endif %}
+                    </h3>
+                </div>
+				<div class="card-body">
+					{% csrf_token %}
+					<input type="hidden" name="action" value="{{ action }}">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-12">	
+                                <div class="row g-2">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="mb-3 form-password-toggle">
+                                            <label class="form-label custom_label" for="email">Tipo de Cédula</label>
+                                            <div class="input-group input-group-merge">
+                                                {{ form.tipo_cedula|attr:'required' }}
+                                            </div>
+                                        </div>
+                                    </div>
+									<div class="col-sm-6 col-xs-12">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label custom_label" for="cedula">Cedúla</label>
+											<div class="input-group input-group-merge">
+												{{ form.cedula|attr:'required'|attr:'autocomplete:off'|attr:'onkeypress:return Solo_Numero_ci(event);'|attr:'maxlength:8'|attr:'minlength:8' }}
+											</div>
+										</div>
+									</div>
+                                </div>						
+								<div class="row">
+									<div class="col-md-6">										
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label custom_label" for="nombres">Nombres:</label>
+											<div class="input-group">
+												{{ form.nombre|attr:'autocomplete:off'|attr:'onkeypress:return Solo_Texto(event);' }}
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label custom_label" for="apellidos">Apellidos:</label>
+											<div class="input-group input-group-merge">
+												{{ form.apellido|attr:'autocomplete:off'|attr:'onkeypress:return Solo_Texto(event);' }}
+											</div>
+										</div>
+									</div>
+								</div>								
+								<div class="row g-2">
+                                    <div class="col-sm-4 col-xs-12">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label custom_label" for="email">Teléfono</label>
+											<div class="input-group input-group-merge">
+												{{ form.telefono|attr:'required' }}
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4 col-xs-12">
+                                        <div class="input-group">
+                                            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                                            <div class="input-group" id="fecha_nacimiento" data-target-input="nearest">
+                                                {{ form.fecha_nacimiento }}
+                                                <div class="input-group-append" data-target="#fecha_nacimiento" data-toggle="datetimepicker">
+                                                    <div class="input-group-text p-2 m-0 bg-simple-c-white">
+                                                        <i class="fas fa-calendar-alt m-auto c-blue"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+									<div class="col-sm-4 col-xs-12">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label custom_label" for="contraseña">Sexo</label>
+											<div class="input-group input-group-merge">
+												{{ form.sexo }}
+											</div>
+										</div>
+									</div>
+								</div>
+                                <div class="row g-2">
+									<div class="col-sm-12">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label custom_label" for="nombre de usuario">Dirección</label>
+											<div class="input-group input-group-merge">
+												{{ form.direccion }}
+											</div>
+										</div>
+									</div>
+								</div>                                 
+								<br>																				
+							</div>							
+						</div>	
+					</div>
+					
+				</div>
+				<div class="card-footer d-flex justify-content-center" style="border-top: 1px solid #dee2e6;">
+					<div>
+						<button type="submit" class="btn btn-primary mr-2">
+							<i class="fas fa-save"></i> Guardar Registro
+						</button>
+						<a href="{{ list_url }}" class="btn btn-danger">
+							<i class="fas fa-times"></i> Cancelar
+						</a>
+					</div>					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</form>
+
+{% block javascript_form %}
+    <script src="{% static 'pacientes/js/formulario.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

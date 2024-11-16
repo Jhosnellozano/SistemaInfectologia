@@ -1,0 +1,26 @@
+{% extends 'list.html' %}
+{% load static %}
+
+{% block columns %}
+    <tr> 
+        <th scope="col">Nombre y Apellido</th>
+        <th scope="col">Cédula</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+
+{% block javascript_list %}
+    <script src="{% static 'pacientes/js/listado.js' %}"></script>
+{% endblock %}
+
+{% block content_list_before %}
+
+{% endblock %}

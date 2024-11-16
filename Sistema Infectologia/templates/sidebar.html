@@ -1,0 +1,59 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <a class="brand-link logo_theme">          
+      <img src="{% static 'img/Dr.Miguel.jpeg' %}"
+          alt="AdminLTE Logo"
+          class="brand-image img-circle"
+          style="opacity: .8">
+      <span class="brand-text font-weight-light font-weight-normal ss">
+        “Dr. Miguel Oraá”
+      </span>
+  </a>
+  <div class="sidebar">    
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+        <li class="nav-item">
+          <a href="{% url 'hospital:paciente_listado' %}" class="nav-link">
+            <i class="fas fa-user-injured"></i>
+            <p class="ml-1">
+              Pacientes
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'hospital:doctor_listado' %}" class="nav-link">
+            <i class="fas fa-user-md"></i>
+            <p class="ml-1">
+              Doctores
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'hospital:cita_listado' %}" class="nav-link">
+            <i class="fas fa-calendar-check"></i>
+            <p class="ml-1">
+              Citas
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'usuario:listado' %}" class="nav-link">
+            <i class="fas fa-users"></i> 
+            <p class="ml-1">
+              Usuarios
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'login:cerrar_sesion' %}" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i> 
+            <p class="ml-1">
+               Salir
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
