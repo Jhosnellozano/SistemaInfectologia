@@ -55,13 +55,12 @@ class PacienteForm(ModelForm):
 
     def save(self, commit=True):
         data = {}
-        form = super()
         try:
-            if form.is_valid():
-                instance = form.save()
+            if self.is_valid():
+                instance = super().save(commit=commit)
                 data = instance.toJSON()
             else:
-                data['error'] = form.errors
+                data['error'] = self.errors
         except Exception as e:
             data['error'] = str(e)
         return data
@@ -98,18 +97,37 @@ class DoctorForm(ModelForm):
 
     def save(self, commit=True):
         data = {}
-        form = super()
         try:
-            if form.is_valid():
-                instance = form.save()
+            if self.is_valid():
+                instance = super().save(commit=commit)
                 data = instance.toJSON()
             else:
-                data['error'] = form.errors
+                data['error'] = self.errors
         except Exception as e:
             data['error'] = str(e)
         return data
     
 class CitaForm(ModelForm):
+    hora = forms.TimeField(
+        input_formats=['%I:%M %p', '%H:%M'],
+        widget=forms.TimeInput(
+            format='%I:%M %p',
+            attrs={
+                'class': 'form-control datetimepicker-input',
+                'id': 'hora',
+                'type': 'text',
+                'data-target': '#hora',
+                'data-toggle': 'datetimepicker',
+                'placeholder': 'Ingrese la hora (ej: 02:00 PM)',
+                'autocomplete': 'off'
+            }
+        )
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if args and args[0]:
+            print(f"Raw hora value from POST: {args[0].get('hora')}")
 
     class Meta:
         model = Cita
@@ -122,39 +140,40 @@ class CitaForm(ModelForm):
                 'class': 'select2 form-control',
             }),
             'fecha': forms.DateInput(
-                format='%Y-%m-%d', attrs={
-                'class': 'form-control border-right-0 datetimepicker-input',
-                'id': 'fecha',
-                'value': datetime.now().strftime('%Y-%m-%d'),
-                'data-target': '#fecha',
-                'data-toggle': 'datetimepicker',
-            }),
-            'hora': forms.TimeInput(
-                format='%H:%M',
+                format='%Y-%m-%d', 
                 attrs={
                     'class': 'form-control border-right-0 datetimepicker-input',
-                    'id': 'hora',
-                    'data-target': '#hora',
+                    'id': 'fecha',
+                    'value': datetime.now().strftime('%Y-%m-%d'),
+                    'data-target': '#fecha',
                     'data-toggle': 'datetimepicker',
-            }),
+                }
+            ),
             'observaciones': forms.Textarea(attrs={
                 'class': 'form-control',
                 'required': False,
                 'rows': '2',
                 'placeholder': 'Ingrese una observación',
             }),
-            
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        print(f"Clean method - all cleaned_data: {cleaned_data}")
+        print(f"Raw data before cleaning: {self.data}")
+        return cleaned_data
 
     def save(self, commit=True):
         data = {}
-        form = super()
+        print(f"Save method - form errors: {self.errors}")
+        print(f"Save method - cleaned_data: {self.cleaned_data}")
+        
         try:
-            if form.is_valid():
-                instance = form.save()
+            if self.is_valid():
+                instance = super().save(commit=commit)
                 data = instance.toJSON()
             else:
-                data['error'] = form.errors
+                data['error'] = self.errors
         except Exception as e:
             data['error'] = str(e)
         return data

@@ -17,16 +17,21 @@ $(function () {
       close: "fa fa-times",
     },
   });
+
   $("#hora").datetimepicker({
-    format: "HH:mm",
-    step: 30,
-    locale: "es",
-    useCurrent: false, // Evitar que se seleccione la hora actual por defecto
+    format: 'hh:mm A',
+    stepping: 5,
+    locale: 'es',
+    useCurrent: false,
+    keepInvalid: false,
+    debug: false,
     icons: {
       time: "fa fa-clock",
       up: "fa fa-arrow-up",
-      down: "fa fa-arrow-down",
-    },
+      down: "fa fa-arrow-down"
+    }
+  }).on('dp.change', function (e) {
+    console.log('Hora seleccionada:', $(this).val());
   });
 
   $(".select2").select2({

@@ -4,25 +4,25 @@
 
 {% block content %}
 <!-- Basic Layout -->
-<form method="post" action=".">  
+<form method="post" action=".">
     <div class="row">
-		<div class="col-md-12">
-			<div class="card card-primary">
+        <div class="col-md-12">
+            <div class="card card-primary">
                 <div class="card-header ">
                     <h3 class="card-title">
                         {% if action == 'add' %}
-                            <i class="fas fa-plus"></i> <b class="ml-2">Nuevo</b>
+                        <i class="fas fa-plus"></i> <b class="ml-2">Nuevo</b>
                         {% else %}
-                            <i class="fas fa-edit"></i> <b class="ml-2">Edición</b>
+                        <i class="fas fa-edit"></i> <b class="ml-2">Edición</b>
                         {% endif %}
                     </h3>
                 </div>
-				<div class="card-body">
-					{% csrf_token %}
-					<input type="hidden" name="action" value="{{ action }}">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-sm-12">	
+                <div class="card-body">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
                                 <div class="row g-2">
                                     <div class="col-sm-6 col-xs-12">
                                         <div class="mb-3 form-password-toggle">
@@ -32,7 +32,7 @@
                                             </div>
                                         </div>
                                     </div>
-									<div class="col-sm-6 col-xs-12">
+                                    <div class="col-sm-6 col-xs-12">
                                         <div class="mb-3 form-password-toggle">
                                             <label class="form-label custom_label" for="email">Doctor</label>
                                             <div class="input-group input-group-merge">
@@ -40,69 +40,69 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>						
-								<div class="row">
-									<div class="col-sm-6 col-xs-12">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
                                         <div class="input-group">
                                             <label for="fecha">Fecha:</label>
                                             <div class="input-group" id="fecha" data-target-input="nearest">
                                                 {{ form.fecha|attr:'required' }}
-                                                <div class="input-group-append" data-target="#fecha" data-toggle="datetimepicker">
+                                                <div class="input-group-append" data-target="#fecha"
+                                                    data-toggle="datetimepicker">
                                                     <div class="input-group-text p-2 m-0 bg-simple-c-white">
                                                         <i class="fas fa-calendar-alt m-auto c-blue"></i>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-									</div>
-									<div class="col-sm-6 col-xs-12">
-                                        <div class="input-group">
-                                            <label for="hora">Hora:</label>
-                                            <div class="input-group" id="hora" data-target-input="nearest">
-                                                {{ form.hora|attr:'required' }}
-                                                <div class="input-group-append" data-target="#hora" data-toggle="datetimepicker">
-                                                    <div class="input-group-text p-2 m-0 bg-simple-c-white">
-                                                        <i class="fas fa-calendar-alt m-auto c-blue"></i>
-                                                    </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="input-group" id="hora" data-target-input="nearest">
+                                            {{ form.hora|attr:'required' }}
+                                            <div class="input-group-append" data-target="#hora"
+                                                data-toggle="datetimepicker">
+                                                <div class="input-group-text p-2 m-0 bg-simple-c-white">
+                                                    <i class="fas fa-calendar-alt m-auto c-blue"></i>
                                                 </div>
                                             </div>
                                         </div>
-									</div>
-								</div>								
-								<div class="row mt-3">
-									<div class="col-sm-12">
-										<div class="mb-3 form-password-toggle">
-											<label class="form-label custom_label" for="nombre de usuario">Observaciones</label>
-											<div class="input-group input-group-merge">
-												{{ form.observaciones }}
-											</div>
-										</div>
-									</div>
-								</div>									
-								</div>                                                       
-								<br>																				
-							</div>							
-						</div>	
-					</div>
-                    <div class="card-footer d-flex justify-content-center" style="border-top: 1px solid #dee2e6;">
-                        <div>
-                            <button type="submit" class="btn btn-primary mr-2">
-                                <i class="fas fa-save"></i> Guardar Registro
-                            </button>
-                            <a href="{{ list_url }}" class="btn btn-danger">
-                                <i class="fas fa-times"></i> Cancelar
-                            </a>
-                        </div>					
-                    </div>					
-				</div>
-			</div>
-		</div>
-		
-	</div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-sm-12">
+                                        <div class="mb-3 form-password-toggle">
+                                            <label class="form-label custom_label"
+                                                for="nombre de usuario">Observaciones</label>
+                                            <div class="input-group input-group-merge">
+                                                {{ form.observaciones }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-center" style="border-top: 1px solid #dee2e6;">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2">
+                            <i class="fas fa-save"></i> Guardar Registro
+                        </button>
+                        <a href="{{ list_url }}" class="btn btn-danger">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
 </form>
 
 {% block javascript_form %}
-    <script src="{% static 'citas/js/formulario.js' %}"></script>
+<script src="{% static 'citas/js/formulario.js' %}"></script>
 {% endblock %}
 
 {% endblock %}

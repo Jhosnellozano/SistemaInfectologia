@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date, timezone
+from datetime import date, timezone, datetime
 from django.forms import model_to_dict
 #from core.usuarios.models import Usuario
 
@@ -99,7 +99,11 @@ class Cita(models.Model):
         item['paciente'] = self.paciente.toJSON()
         item['doctor'] = self.doctor.toJSON()
         item['fecha'] = self.fecha.strftime('%Y-%m-%d')
-        item['hora'] = self.hora.strftime('%H:%M %p')
+        try:
+            hora_datetime = datetime.combine(datetime.today(), self.hora)
+            item['hora'] = hora_datetime.strftime('%I:%M %p')
+        except Exception:
+            item['hora'] = self.hora.strftime('%H:%M') if self.hora else None
         return item
 
 # class Estudiante(models.Model):
