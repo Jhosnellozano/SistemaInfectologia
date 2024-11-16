@@ -44,7 +44,7 @@ class DoctorListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado de Pacientes'
+        context['title'] = 'Listado de Doctores'
         context['create_url'] = reverse_lazy('hospital:doctor_crear')
         context['list_url'] = reverse_lazy('hospital:doctor_listado')
         return context
